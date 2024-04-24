@@ -19,4 +19,6 @@
 
         </div>
         <livewire:folders/>
+        <x-footer/>
+    </div>
 @endsection
