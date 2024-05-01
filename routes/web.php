@@ -41,4 +41,6 @@ Route::group(
 
     }
 );
+//Route::get('/files', App\Livewire\FileManager::class)->name('files.index');
+//Route::get('/files/{file}', App\Livewire\FileManager::class)->name('files.show');
 
