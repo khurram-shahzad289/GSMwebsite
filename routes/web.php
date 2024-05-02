@@ -42,3 +42,17 @@ Route::group(
     }
 );
 
+
+
+// These are some routes for admin pages;
+
+Route::get('/dashboard', function () {
+    return View('admin.dashboard');
+});
+Route::get('/users', function () {
+    return View('admin.users');
+});
+Route::get('/newusers', function () {
+    return View('admin.newusers');
+});
+
