@@ -27,6 +27,4 @@
     @endif
 
 </div>
-<script>
-    function recursiveData()
-</script>
+
