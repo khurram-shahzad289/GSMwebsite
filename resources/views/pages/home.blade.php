@@ -19,6 +19,7 @@
 
         </div>
         <livewire:folders/>
+        <livewire:file-manager/>
         <x-footer/>
     </div>
 @endsection
