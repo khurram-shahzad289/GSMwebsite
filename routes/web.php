@@ -1,8 +1,16 @@
 <?php
 
+use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Livewire\Auth\Login;
+use App\Livewire\Auth\Passwords\Confirm;
+use App\Livewire\Auth\Passwords\Email;
+use App\Livewire\Auth\Passwords\Reset;
+use App\Livewire\Auth\Register;
+use App\Livewire\Auth\Verify;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PolicyController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +23,49 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route::view('/', 'welcome')->name('home');
+
+Route::middleware('guest')->group(function () {
+    Route::get('login', Login::class)
+        ->name('login');
+
+    Route::get('register', Register::class)
+        ->name('register');
+});
+
+Route::get('password/reset', Email::class)
+    ->name('password.request');
+
+Route::get('password/reset/{token}', Reset::class)
+    ->name('password.reset');
+
+Route::middleware('auth')->group(function () {
+    Route::get('email/verify', Verify::class)
+        ->middleware('throttle:6,1')
+        ->name('verification.notice');
+
+    Route::get('password/confirm', Confirm::class)
+        ->name('password.confirm');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)
+        ->middleware('signed')
+        ->name('verification.verify');
+
+    Route::post('logout', LogoutController::class)
+        ->name('logout');
+});
+
+
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/recent-files', [PageController::class, 'recent-files'])->name('recent-files');
 Route::get('/select-package', [PageController::class, 'select-package'])->name('select-package');
 Route::get('/world-agents', [PageController::class, 'world-agents'])->name('world-agents');
 Route::get('/team', [PageController::class, 'team'])->name('team');
 Route::get('/get-key', [PageController::class, 'get-key'])->name('get-key');
-Route::get('/login', [PageController::class, 'login'])->name('login');
-Route::get('/register', [PageController::class, 'register'])->name('register');
+//Route::get('/login', [PageController::class, 'login'])->name('login');
+//Route::get('/register', [PageController::class, 'register'])->name('register');
 Route::get('/about_us', [PageController::class, 'about_us'])->name('about_us');
 Route::get('/contact_us', [PageController::class, 'contact_us'])->name('contact_us');
 
@@ -43,4 +86,18 @@ Route::group(
 );
 //Route::get('/files', App\Livewire\FileManager::class)->name('files.index');
 //Route::get('/files/{file}', App\Livewire\FileManager::class)->name('files.show');
+
+
+
+// These are some routes for admin pages;
+
+Route::get('/dashboard', function () {
+    return View('admin.dashboard');
+});
+Route::get('/users', function () {
+    return View('admin.users');
+});
+Route::get('/newusers', function () {
+    return View('admin.newusers');
+});
 
