@@ -12,7 +12,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon"
-        href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/img/favicon/favicon.ico" />
+          href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/img/favicon/favicon.ico"/>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -22,19 +22,18 @@
         rel="stylesheet">
 
     <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="/assets/admin/vendor/fonts/boxicons.css" />
-
+    <link rel="stylesheet" href="/assets/admin/vendor/fonts/boxicons.css"/>
 
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="/assets/admin/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="/assets/admin/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="/assets/admin/css/demo.css" />
+    <link rel="stylesheet" href="/assets/admin/vendor/css/core.css" class="template-customizer-core-css"/>
+    <link rel="stylesheet" href="/assets/admin/vendor/css/theme-default.css" class="template-customizer-theme-css"/>
+    <link rel="stylesheet" href="/assets/admin/css/demo.css"/>
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="/assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="/assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
 
-    <link rel="stylesheet" href="/assets/admin/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="/assets/admin/vendor/libs/apex-charts/apex-charts.css"/>
 
     <!-- Page CSS -->
 
@@ -51,11 +50,12 @@
     <script>
         window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'GA_MEASUREMENT_ID');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
     </script>
     <!-- Custom notification for demo -->
     <!-- beautify ignore:end -->
@@ -68,98 +68,83 @@
 
 <body>
 
-    <!-- Layout wrapper -->
-    <div class="layout-wrapper layout-content-navbar  ">
-        <div class="layout-container">
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-content-navbar  ">
+    <div class="layout-container">
 
 
-            <!-- Menu -->
+        <!-- Menu -->
 
-            @include('layouts.admin.sidebar')
-            <!-- / Menu -->
-
-
-
-            <!-- Layout container -->
-            <div class="layout-page">
+        @include('components.admin.sidebar')
+        <!-- / Menu -->
 
 
+        <!-- Layout container -->
+        <div class="layout-page">
 
 
-
-                <!-- Navbar -->
-                @include('layouts.admin.nav')
-
-
-                <!-- / Navbar -->
+            <!-- Navbar -->
+            @include('components.admin.nav')
 
 
-
-                <!-- Content wrapper -->
-                <div class="content-wrapper">
-
-                    <!-- Content -->
-                    <main>
-                        @yield('content')
-                    </main>
-
-                    <!-- / Content -->
+            <!-- / Navbar -->
 
 
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+
+                <!-- Content -->
+                <main>
+                    @yield('content')
+                </main>
+
+                <!-- / Content -->
 
 
-                    <!-- Footer -->
-                    @include('layouts.admin.footer')
-                    <!-- / Footer -->
+                <!-- Footer -->
+                @include('components.admin.footer')
+                <!-- / Footer -->
 
 
-                    <div class="content-backdrop fade"></div>
-                </div>
-                <!-- Content wrapper -->
+                <div class="content-backdrop fade"></div>
             </div>
-            <!-- / Layout page -->
+            <!-- Content wrapper -->
         </div>
-
-
-
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
-
-
+        <!-- / Layout page -->
     </div>
-    <!-- / Layout wrapper -->
 
 
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
 
 
-    
+</div>
+<!-- / Layout wrapper -->
 
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="/assets/admin/vendor/libs/jquery/jquery.js"></script>
-    <script src="/assets/admin/vendor/libs/popper/popper.js"></script>
-    <script src="/assets/admin/vendor/js/bootstrap.js"></script>
-    <script src="/assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+<script src="/assets/admin/vendor/libs/jquery/jquery.js"></script>
+<script src="/assets/admin/vendor/libs/popper/popper.js"></script>
+<script src="/assets/admin/vendor/js/bootstrap.js"></script>
+<script src="/assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="/assets/admin/vendor/js/menu.js"></script>
-    <!-- endbuild -->
+<script src="/assets/admin/vendor/js/menu.js"></script>
+<!-- endbuild -->
 
-    <!-- Vendors JS -->
-    <script src="/assets/admin/vendor/libs/apex-charts/apexcharts.js"></script>
+<!-- Vendors JS -->
+<script src="/assets/admin/vendor/libs/apex-charts/apexcharts.js"></script>
 
-    <!-- Main JS -->
-    <script src="/assets/admin/js/main.js"></script>
+<!-- Main JS -->
+<script src="/assets/admin/js/main.js"></script>
 
-    <!-- Page JS -->
-    <script src="/assets/admin/js/dashboards-analytics.js"></script>
+<!-- Page JS -->
+<script src="/assets/admin/js/dashboards-analytics.js"></script>
 
-    @livewireScripts
+@livewireScripts
 
 
 </body>
-
-
 
 
 </html>

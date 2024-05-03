@@ -1,10 +1,3 @@
-@props([
-    'folderEmpty' => false,
-    'folders' => [],
-    'files' => [],
-    'route' => 'folders.show'
-    ])
-
 @extends('layouts.app')
 
 @section('content')
@@ -27,23 +20,7 @@
         </div>
         {{--        <livewire:folders/>--}}
         {{--        <livewire:file-manager/>--}}
-            <div class="flex justify-center">
-                <x-bread-crumbs class="mb-4"
-                                :parentId="!empty($folders) ? $folders[0]->getFolderParentId() : null"
-                />
-            </div>
-        @if($folderEmpty)
-            <div class="flex justify-center">
-                <x-bread-crumbs class="mb-4"
-                                :parentId="$currentFolder->getFolderId()"
-                />
-            </div>
-            <p class="text-center">folder is empty</p>
-        @else
-            <x-home-folders :folders="$folders" :route="$route"/>
-            <x-files :files="$files"/>
-        @endif
+        <x-home-folders/>
         <x-footer/>
-
     </div>
 @endsection

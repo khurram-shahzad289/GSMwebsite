@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\FolderDisplayController;
+use App\Http\Middleware\Admin;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Passwords\Confirm;
 use App\Livewire\Auth\Passwords\Email;
@@ -23,7 +25,7 @@ use App\Http\Controllers\PolicyController;
 |
 */
 
-//Route::view('/', 'welcome')->name('home');
+//Route::view('/welcome', 'welcome')->name('welcome');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)
@@ -75,7 +77,7 @@ Route::group(
         'prefix' => 'policy',
         'as' => 'policy.'
     ],
-    function (){
+    function () {
         Route::get('/terms_of_service', [PolicyController::class, 'terms_of_service'])->name('terms_of_service');
         Route::get('/privacy_policy', [PolicyController::class, 'terms_of_service'])->name('privacy_policy');
         Route::get('/return_policy', [PolicyController::class, 'return_policy'])->name('return_policy');
@@ -85,19 +87,24 @@ Route::group(
     }
 );
 //Route::get('/files', App\Livewire\FileManager::class)->name('files.index');
-//Route::get('/files/{file}', App\Livewire\FileManager::class)->name('files.show');
-
+Route::get('/folders/{folder}', [FolderDisplayController::class, 'index'])->name('folders.show');
+//Route::get('/admin/folders/{folder}', [FolderDisplayController::class, 'adminFolders'])->name('folders.admin');
 
 
 // These are some routes for admin pages;
 
-Route::get('/dashboard', function () {
-    return View('admin.dashboard');
+Route::middleware([Admin::class])->group(function () {
+    Route::get('/admin/folders/{folder}', [FolderDisplayController::class, 'adminFolders'])->name('folders.admin');
+
+    Route::get('/dashboard', function () {
+        return View('admin.dashboard');
+    });
+
 });
-Route::get('/users', function () {
-    return View('admin.users');
-});
-Route::get('/newusers', function () {
-    return View('admin.newusers');
-});
+//Route::get('/users', function () {
+//    return View('admin.users');
+//});
+//Route::get('/newusers', function () {
+//    return View('admin.newusers');
+//});
 

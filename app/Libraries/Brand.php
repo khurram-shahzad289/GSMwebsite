@@ -2,6 +2,8 @@
 
 namespace App\Libraries;
 
+use Illuminate\Support\Facades\App;
+
 class Brand
 {
     public function getAllPolicyDocuments(): array
@@ -15,7 +17,7 @@ class Brand
         ];
     }
 
-    public static function buildFolder($folder)
+    public static function buildFolder($folder): Folder
     {
         return new Folder(
             \Arr::get($folder, 'id', ''),
@@ -23,8 +25,8 @@ class Brand
             \Arr::get($folder, 'description', ''),
             \Arr::get($folder, 'parent_id', null),
             \Arr::get($folder, 'created_at', ''),
-            \Arr::get($folder, 'files', []),
-            \Arr::get($folder, 'children', []),
+//            \Arr::get($folder, 'files', []),
+            (new \App\Models\Folder())->getFolderChildren(\Arr::get($folder, 'id', '')),
         );
     }
     public static function buildFile($file)
