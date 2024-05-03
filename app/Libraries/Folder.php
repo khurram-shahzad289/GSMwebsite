@@ -7,10 +7,10 @@ class Folder
     public function __construct(
         private ?string $folderId,
         private string $folderName,
-        private string $folderDescription,
+        private ?string $folderDescription,
         private ?string $folderParentId,
         private string $folderCreatedAt,
-        private array $folderFiles,
+//        private array $folderFiles,
         private array $folderChildren,
     )
     {
@@ -37,7 +37,7 @@ class Folder
         $this->folderName = $folderName;
     }
 
-    public function getFolderDescription(): string
+    public function getFolderDescription(): ?string
     {
         return $this->folderDescription;
     }
@@ -67,19 +67,14 @@ class Folder
         $this->folderCreatedAt = $folderCreatedAt;
     }
 
-    public function getFolderFiles(): array
-    {
-        return $this->folderFiles;
-    }
-
-    public function setFolderFiles(array $folderFiles): void
-    {
-        $this->folderFiles = $folderFiles;
-    }
 
     public function getFolderChildren(): array
     {
         return $this->folderChildren;
+    }
+    public function hasChildren(): bool
+    {
+        return !empty($this->folderChildren);
     }
 
     public function setFolderChildren(array $folderChildren): void

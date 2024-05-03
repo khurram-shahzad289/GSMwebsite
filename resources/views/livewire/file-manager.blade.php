@@ -11,14 +11,19 @@
                 </div>
             @else
 {{--                {{ dd(json_encode($file->getFolderChildren())) }}--}}
-                <button class="py-10 text-2xl"
-                        wire:click="recursive({{ json_encode($file)  }})">
+{{--                <button class="py-10 text-2xl"--}}
+{{--                        wire:click="recursive({{ json_encode($file)  }})">--}}
 
-                    <div class="flex justify-center items-center gap-2">
-                        <img class="w-[100px]" src="/images/icons/folder.svg">
-                        {{ $file['name'] }}
-                    </div>
-                </button>
+{{--                    <div class="flex justify-center items-center gap-2">--}}
+{{--                        <img class="w-[100px]" src="/images/icons/folder.svg">--}}
+{{--                        {{ $file['name'] }}--}}
+{{--                    </div>--}}
+{{--                </button>--}}
+
+                                    <a href="{{ route('folders.show', ['folder' => json_encode($file['children'])]) }}" class="flex justify-center items-center gap-2">
+                                        <img class="w-[100px]" src="/images/icons/folder.svg">
+                                        {{ $file['name'] }}
+                                    </a>
             @endif
         @endforeach
     </div>

@@ -11,107 +11,35 @@ class Folder extends Model
     protected $fillable = ['name', 'description', 'parent_id'];
 
 
-//    public function files()
-//    {
-//        return $this->hasMany(File::class);
-//    }
-//    public function parent()
-//    {
-//        return $this->belongsTo(Folder::class, 'parent_id');
-//    }
-//    public static function buildTree($folders, $parentId = null)
-//    {
-//        $tree = [];
-//
-//        foreach ($folders as $folder) {
-//            if ($folder['parent_id'] === $parentId) {
-//                $children = self::buildTree($folders, $folder['id']);
-//                if ($children) {
-//                    $folder['children'] = $children;
-//                }
-//                $tree[] = $folder;
-//            }
-//        }
-//
-//        return $tree;
-//    }
 
-
-
-//    protected $guarded = [];
-
-    public static function buildTree($folders, $files, $parentId = null)
-    {
-
-        $tree = [];
-
+    public static function getFolderChildren(int $id){
+        $folderList = [];
+        $folders = Folder::where('parent_id', $id)->get();
         foreach ($folders as $folder) {
-            if ($folder['parent_id'] === $parentId) {
-                $folder['files'] = self::getFiles($files, $folder['id']);
-//                $folder['children'] = self::buildTree($folders, $files, $folder['id']);
-                $folder['children'] = array_merge($folder['files'], self::buildTree($folders, $files, $folder['id'])) ;
-                $tree[] = $folder;
-            }
+            $folderList[] = Brand::buildFolder($folder);
+        }
+        return $folderList;
+    }
+    public function getAllNullFolders(){
+        $foldersList = [];
+        $folders = Folder::whereNull('parent_id')->get()->toArray();
+        foreach ($folders as $folder){
+            $foldersList[] = Brand::buildFolder($folder);
         }
 
-        return $tree;
+         return $foldersList;
+
     }
-
-
-//    public static function buildTree($folders, $files, $parentId = null)
-//    {
-//
-//        $tree = [];
-//
-//        foreach ($folders as $folder) {
-//
-//            if ($folder->getFolderParentId() === $parentId) {
-//                $folder->setFolderFiles(self::getFiles($files, $folder->getFolderId()));
-//                $folder->setFolderChildren(array_merge($folder->getFolderFiles(), self::buildTree($folders, $files, $folder->getFolderId())));
-//
-//                $tree[] = $folder;
-//            }
-//        }
-//
-//        return $tree;
-//    }
-
-
-//    protected static function getFiles($files, $parentId)
-//    {
-//        $folderFiles = [];
-//
-//        foreach ($files as $file) {
-//            if ($file->getFileParentId() === $parentId) {
-//                $folderFiles[] = $file;
-//            }
-//        }
-//
-//        return $folderFiles;
-//    }
-
-    protected static function getFiles($files, $parentId)
-    {
-        $folderFiles = [];
-
-        foreach ($files as $file) {
-            if ($file['parent_id'] === $parentId) {
-                $folderFiles[] = $file;
-            }
-        }
-
-        return $folderFiles;
+    public static function createFolder($name, $description, $parentId){
+        Folder::create([
+            'name' => $name,
+            'description' => $description,
+            'parent_id' => $parentId,
+        ]);
     }
-
-    public static function tree()
+    public static function getParentFolder(int $id) : \App\Libraries\Folder
     {
-//        $allFolders = (new Brand())->getFolders(Folder::get()->toArray());
-//        $allFiles = (new Brand())->getFiles(File::get()->toArray());
-
-        $allFolders = Folder::get()->toArray();
-        $allFiles = File::get()->toArray();
-
-        return self::buildTree($allFolders,$allFiles);
+        return Brand::buildFolder(Folder::where('id', $id)->first()->toArray());
     }
 
 

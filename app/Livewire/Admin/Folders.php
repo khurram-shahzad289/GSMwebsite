@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin;
 
 use App\Models\File;
 use App\Models\Folder;
@@ -12,11 +12,11 @@ class Folders extends Component
     public $name;
     public $description;
     public $parentId;
-    public $parentIdFile;
     public $files;
     public string $link = '';
     public $fileSize;
     public bool $featured = false;
+    public bool $created = false;
 
     protected $rules = [
         'parentIdFile' => 'required',
@@ -27,38 +27,24 @@ class Folders extends Component
     }
     public function render()
     {
-        return view('livewire.folders',['files' => $this->files]);
+        return view('livewire.admin.folders',['files' => $this->files]);
     }
     public function createFolder()
     {
-        $folder = Folder::create([
-            'name' => $this->name,
-            'description' => $this->description,
-            'parent_id' => $this->parentId,
-        ]);
+        Folder::createFolder($this->name, $this->description, $this->parentId);
 
-        // Reset form fields after creating file
+        $this->created = true;
         $this->reset(['name', 'description', 'parentId']);
 
-        // You can emit an event or do other stuff here if needed
     }
 
     public function createFile()
     {
-//        dd($this->link);
-        $file = File::create([
-            'parent_id' => $this->parentIdFile,
-            'name' => $this->name,
-            'link' => $this->link,
-            'description' => $this->description,
-            'size' => $this->fileSize,
-            'featured' => $this->featured,
-        ]);
 
-        // Reset form fields after creating file
+        File::createFile($this->parentId, $this->name,$this->link, $this->description,  $this->fileSize ,$this->featured);
+        $this->created = true;
         $this->reset(['name','link', 'description', 'fileSize', 'featured']);
 
-        // You can emit an event or do other stuff here if needed
     }
 
     public function folder()
