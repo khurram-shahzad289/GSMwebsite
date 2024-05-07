@@ -74,7 +74,8 @@ class Folder
     }
     public function hasChildren(): bool
     {
-        return !empty($this->folderChildren);
+//        dd(!empty(\App\Models\File::getFolderFiles($this->folderId)));
+        return !empty($this->folderChildren || \App\Models\File::getFolderFiles($this->folderId));
     }
 
     public function setFolderChildren(array $folderChildren): void
