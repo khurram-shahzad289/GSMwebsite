@@ -1,6 +1,7 @@
 @props([
     'folderEmpty' => false,
     'folders' => [],
+    'files' => [],
     'route' => 'folders.admin',
     'parentId' => !empty($folders) ? $folders[0]->getFolderParentId() : null
 ])
@@ -102,7 +103,9 @@
             @if($folderEmpty)
                 <p class="text-center">folder is empty</p>
             @else
-                <x-home-folders :folders="$folders" :route="$route"/>
+{{--                {{ dd($files) }}--}}
+                <x-home-folders :folders="$folders" :files="$files" :route="$route"/>
+                <x-files :files="$files"/>
             @endif
         </div>
 

@@ -27,11 +27,20 @@
         </div>
         {{--        <livewire:folders/>--}}
         {{--        <livewire:file-manager/>--}}
+        @if(empty($folders))
+            <div class="flex justify-center">
+                <x-bread-crumbs class="mb-4"
+                                :parentId="!empty($files) ? $files[0]->getFileParentId() : null"
+                />
+            </div>
+        @else
             <div class="flex justify-center">
                 <x-bread-crumbs class="mb-4"
                                 :parentId="!empty($folders) ? $folders[0]->getFolderParentId() : null"
                 />
             </div>
+        @endif
+
         @if($folderEmpty)
             <div class="flex justify-center">
                 <x-bread-crumbs class="mb-4"
@@ -40,7 +49,8 @@
             </div>
             <p class="text-center">folder is empty</p>
         @else
-            <x-home-folders :folders="$folders" :route="$route"/>
+
+            <x-home-folders :folders="$folders" :files="$files" :route="$route"/>
             <x-files :files="$files"/>
         @endif
         <x-footer/>

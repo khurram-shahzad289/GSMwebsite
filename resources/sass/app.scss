@@ -40,3 +40,17 @@
         transform: translateX(-100%);
     }
 }
+#package{
+    transition: box-shadow 0.2s ease-in-out;
+}
+#package:hover{
+    box-shadow: 25px 0 20px -20px rgba(0, 0, 0, 0.45), -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+}
+.horizontal-line {
+    border: 1px solid red;
+    width: 40%;
+}
+.horizontal-line-gray {
+    border: 1px solid lightslategray;
+    width: 80%;
+}

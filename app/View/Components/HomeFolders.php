@@ -13,9 +13,12 @@ class HomeFolders extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct($folders, public string $route )
+    public function __construct($folders, $files, public string $route)
     {
-        if(empty($folders)){
+//        dd($files);
+//        dd(empty($folders));
+//        dd();
+        if(empty($folders) && empty($files)){
             $folderModel =  new Folder();
             $this->folders = $folderModel->getAllNullFolders();
         }
