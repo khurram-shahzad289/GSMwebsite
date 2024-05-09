@@ -29,6 +29,7 @@ class Brand
             (new \App\Models\Folder())->getFolderChildren(\Arr::get($folder, 'id', '')),
         );
     }
+
     public static function buildFile($file)
     {
         return new File(
@@ -42,7 +43,40 @@ class Brand
             \Arr::get($file, 'created_at', ''),
         );
     }
-    public function getFolders($folders):array
+
+    public static function buildPackageList($packages)
+    {
+        $packageList = [];
+        foreach ($packages as $package) {
+            $packageList[] = new Package(
+                \Arr::get($package, 'id', null),
+                \Arr::get($package, 'name', ''),
+                \Arr::get($package, 'price', 0),
+                \Arr::get($package, 'bandwidth', ''),
+                \Arr::get($package, 'every', null),
+                \Arr::get($package, 'totalips', 0),
+            );
+        }
+
+        return $packageList;
+
+    }
+
+    public static function buildPackage($package)
+    {
+        return new Package(
+            \Arr::get($package, 'id', null),
+            \Arr::get($package, 'name', ''),
+            \Arr::get($package, 'price', 0),
+            \Arr::get($package, 'bandwidth', ''),
+            \Arr::get($package, 'every', null),
+            \Arr::get($package, 'totalips', 0),
+        );
+
+
+    }
+
+    public function getFolders($folders): array
     {
         $newFolders = [];
         foreach ($folders as $folder) {
@@ -50,7 +84,8 @@ class Brand
         }
         return $newFolders;
     }
-    public function getFiles($files):array
+
+    public function getFiles($files): array
     {
         $newFiles = [];
         foreach ($files as $file) {
