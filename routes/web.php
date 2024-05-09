@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\FolderDisplayController;
@@ -95,16 +96,7 @@ Route::get('/folders/{folder}', [FolderDisplayController::class, 'index'])->name
 
 Route::middleware([Admin::class])->group(function () {
     Route::get('/admin/folders/{folder}', [FolderDisplayController::class, 'adminFolders'])->name('folders.admin');
-
-    Route::get('/dashboard', function () {
-        return View('admin.dashboard');
-    });
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/new-package', [AdminController::class, 'new-package'])->name('new-package');
 
 });
-//Route::get('/users', function () {
-//    return View('admin.users');
-//});
-//Route::get('/newusers', function () {
-//    return View('admin.newusers');
-//});
-
