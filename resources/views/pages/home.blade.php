@@ -2,7 +2,8 @@
     'folderEmpty' => false,
     'folders' => [],
     'files' => [],
-    'route' => 'folders.show'
+    'route' => 'folders.show',
+    'check' => true
     ])
 
 @extends('layouts.app')
@@ -27,32 +28,38 @@
         </div>
         {{--        <livewire:folders/>--}}
         {{--        <livewire:file-manager/>--}}
-        @if(empty($folders))
-            <div class="flex justify-center">
-                <x-bread-crumbs class="mb-4"
-                                :parentId="!empty($files) ? $files[0]->getFileParentId() : null"
-                />
-            </div>
-        @else
-            <div class="flex justify-center">
-                <x-bread-crumbs class="mb-4"
-                                :parentId="!empty($folders) ? $folders[0]->getFolderParentId() : null"
-                />
-            </div>
-        @endif
+        <div>
+            @if(empty($folders))
+                @if(!$folderEmpty)
+                    <div>
+                        <x-bread-crumbs class="mb-4"
+                                        :parentId="!empty($files) ? $files[0]->getFileParentId() : null"
+                        />
+                    </div>
+                @endif
 
-        @if($folderEmpty)
-            <div class="flex justify-center">
-                <x-bread-crumbs class="mb-4"
-                                :parentId="$currentFolder->getFolderId()"
-                />
-            </div>
-            <p class="text-center">folder is empty</p>
-        @else
+            @else
+                <div>
+                    <x-bread-crumbs class="mb-4"
+                                    :parentId="!empty($folders) ? $folders[0]->getFolderParentId() : null"
+                    />
+                </div>
+            @endif
 
-            <x-home-folders :folders="$folders" :files="$files" :route="$route"/>
-            <x-files :files="$files"/>
-        @endif
+            @if($folderEmpty)
+                <div >
+                    <x-bread-crumbs class="mb-4"
+                                    :parentId="$currentFolder->getFolderId()"
+                    />
+                </div>
+                <p class="text-center">folder is empty</p>
+            @else
+
+                <x-home-folders :folders="$folders" :files="$files" :route="$route"/>
+                <x-files :files="$files"/>
+            @endif
+        </div>
+
         <x-footer/>
 
     </div>

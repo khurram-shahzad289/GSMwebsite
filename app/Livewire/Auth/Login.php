@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Auth;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -30,12 +31,14 @@ class Login extends Component
 
             return;
         }
-
+        if (Auth::user()->isAdmin()){
+            return redirect()->intended(route('dashboard'));
+        }
         return redirect()->intended(route('home'));
     }
 
     public function render()
     {
-        return view('livewire.auth.login')->extends('layouts.auth');
+        return view('livewire.auth.login')->extends('layouts.app');
     }
 }
