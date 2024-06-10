@@ -62,7 +62,7 @@
     </div>
 
     <div id="buy-now" class="bg-gray-200 p-3">
-        <button class="rounded font-bold py-2 w-full bg-[#9c2b2b] text-white">
+        <button wire:click="packageSelected({{ $package->getId() }})" class="rounded font-bold py-2 w-full bg-[#9c2b2b] text-white">
             BUY NOW
         </button>
     </div>

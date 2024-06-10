@@ -71,6 +71,7 @@ Route::get('/get-key', [PageController::class, 'get-key'])->name('get-key');
 //Route::get('/register', [PageController::class, 'register'])->name('register');
 Route::get('/about_us', [PageController::class, 'about_us'])->name('about_us');
 Route::get('/contact_us', [PageController::class, 'contact_us'])->name('contact_us');
+Route::get('/shopping_cart', [PageController::class, 'shopping_cart'])->name('shopping_cart');
 
 
 Route::group(
