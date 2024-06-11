@@ -114,7 +114,7 @@
         <div class="w-[80%] flex flex-col gap-2">
             <p class="font-bold text-gray-600">Do you have any notes about this order?</p>
             <input id="note" placeholder="Notes" class="border border-1 rounded-lg">
-            <button class="bg-green-300 py-2 rounded-lg">
+            <button wire:click="checkout()" class="bg-green-300 py-2 rounded-lg">
                 {{ __('Confirm Order') }}
             </button>
             <button href="{{ route('home') }}" class="py-2 border border-3 rounded-lg">

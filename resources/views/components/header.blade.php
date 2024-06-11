@@ -3,13 +3,13 @@
     <x-headerCom.top-nav/>
     <div class="bg-[#428bca]">
         <div class="py-16 container-1 flex justify-between items-center gap-8">
-            <img class="w-[100px]" src="/images/logo.jpeg">
-            <div id="searchbar" >
+            <div class="w-[33%]">
+                <img class="w-[100px]" src="/images/logo.jpeg">
+            </div>
+            <div id="searchbar" class="w-[66%]">
                 <livewire:search-web/>
             </div>
-            <div id="basket">
-                <img class="w-[100px]" src="/images/icons/cart.svg">
-            </div>
+
         </div>
     </div>
 
