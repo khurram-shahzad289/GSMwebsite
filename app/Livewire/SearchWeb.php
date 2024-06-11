@@ -2,12 +2,14 @@
 
 namespace App\Livewire;
 
+use App\Libraries\OrderStorage;
 use Livewire\Component;
 
 class SearchWeb extends Component
 {
-    public function render()
+    public function render(OrderStorage $storage)
     {
-        return view('livewire.search-web');
+        $package = $storage->retrieve()->getPackage();
+        return view('livewire.search-web', compact('package') );
     }
 }
