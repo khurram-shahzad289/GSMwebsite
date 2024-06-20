@@ -18,6 +18,10 @@
     border-left: 1px solid black;
     height: 20px;
 }
+.vertical-line-gray {
+    border-left: 1px solid gray;
+    height: 170px;
+}
 #slider {
     white-space: nowrap;
     overflow: hidden;
@@ -53,6 +57,10 @@
 .horizontal-line-gray {
     border: 1px solid lightslategray;
     width: 80%;
+}
+.horizontal-line-gray-full {
+    border: 1px solid lightslategray;
+    width: 100%;
 }
 
 
