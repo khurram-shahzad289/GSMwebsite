@@ -1,20 +1,20 @@
-<div class="flex justify-between">
+<div class="flex flex-col items-center md:flex-row md:justify-between">
 
 
-    <form class="flex justify-center items-center gap-1">
+    <form class="flex  flex-col md:flex-row justify-center items-center gap-1 min-w-[300px]">
         <input
-            class="rounded-lg"
+            class="rounded-lg w-full"
             type="text"
             placeholder="Search for ..."
         />
         <select
-            class="rounded-lg"
+            class="rounded-lg w-full"
         >
             <option>Website</option>
             <option>Downloads</option>
         </select>
-        <button class="rounded-lg px-4 py-3 bg-red-500">
-            <img src="/images/icons/search.svg">
+        <button class="rounded-lg w-full md:w-fit px-4 py-3 bg-red-500">
+            <img class="min-w-[15px]" src="/images/icons/search.svg">
         </button>
     </form>
     <div id="basket" class="relative">

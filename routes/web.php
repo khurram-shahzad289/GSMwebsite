@@ -71,7 +71,6 @@ Route::get('/get-key', [PageController::class, 'get-key'])->name('get-key');
 //Route::get('/register', [PageController::class, 'register'])->name('register');
 Route::get('/about_us', [PageController::class, 'about_us'])->name('about_us');
 Route::get('/contact_us', [PageController::class, 'contact_us'])->name('contact_us');
-Route::get('/shopping_cart', [PageController::class, 'shopping_cart'])->name('shopping_cart');
 
 
 Route::group(
@@ -99,5 +98,10 @@ Route::middleware([Admin::class])->group(function () {
     Route::get('/admin/folders/{folder}', [FolderDisplayController::class, 'adminFolders'])->name('folders.admin');
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/new-package', [AdminController::class, 'new-package'])->name('new-package');
+
+});
+Route::middleware([\App\Http\Middleware\HasOrder::class])->group(function () {
+    Route::get('/shopping_cart', [PageController::class, 'shopping_cart'])->name('shopping_cart');
+    Route::get('/payment', [PageController::class, 'payment'])->name('payment');
 
 });

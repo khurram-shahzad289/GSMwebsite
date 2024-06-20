@@ -19,7 +19,7 @@ class Basket extends Component
         if (!Auth::user()){
             return redirect()->intended(route('login'));
         }
-        dd('here');
+        return redirect()->route('payment');
     }
     public function render(OrderStorage $storage)
     {

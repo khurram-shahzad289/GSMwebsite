@@ -1,5 +1,5 @@
 <div class="bg-gradient-to-r from-red-500 via-pink-500 to-black">
-    <div class="container-1 flex justify-center  gap-8 py-8">
+    <div class="container-1 flex flex-col md:flex-row justify-center  gap-8 py-8">
         <div>
             <img class="w-[100px]" src="/images/logo.jpeg">
         </div>
@@ -23,7 +23,7 @@
 
 </div>
 <div class="bg-gray-600">
-<div class="container-1 flex justify-between items-center text-white py-6">
+<div class="container-1 flex flex-col md:flex-row justify-between items-center text-white py-6">
     <div class="flex flex-col gap-2">
         <p class="font-bold">{{__('Copyright © 2024 GSM All Rights Reserved.')}}</p>
         <p>{{ __('Powered By Real Easy Store ( khurram and shakir  )') }}</p>
